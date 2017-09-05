@@ -1,0 +1,22 @@
+<html>
+<body>
+<div>
+        <video width="640" height="320" controls>
+        {% csrf_token %}
+        <source src="{{ link.url }}" type="video/mp4">
+        <source src="#" type="video/ogg">
+        <source src="#" type="video/webm">
+        <form method="post" action="">
+            <input type="button" value="Delete">
+        </form>
+        Your browser does not support this format
+    </video>
+</div>
+<div>
+    <form action="{% url 'LoginPage:logout' %}" method="post">
+        {% csrf_token %}
+            <input type="submit" value="Logout">
+        </form>
+</div>
+</body>
+</html>

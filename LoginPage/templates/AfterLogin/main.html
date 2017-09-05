@@ -1,0 +1,13 @@
+<html>
+<body>
+    {% for video in videolist %}
+        <video width="640" height="320" controls>
+        {% csrf_token %}
+        <source src="{{ video }}" type="video/mp4">
+        <source src="#" type="video/ogg">
+        <source src="#" type="video/webm">
+        Your browser does not support this format
+    </video>
+    {% endfor %}
+</body>
+</html>

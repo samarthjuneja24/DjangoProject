@@ -1,0 +1,135 @@
+<html>
+<body>
+<style type="text/css">
+#ProfilePage
+{
+    /* Move it off the top of the page, then centre it horizontally */
+    margin: 50px auto;
+    width: 635px;
+
+/* For visibility. Delete me */
+border: 1px solid red;
+}
+
+#LeftCol
+{
+    /* Move it to the left */
+    float: left;
+
+    width: 200px;
+    text-align: center;
+
+    /* Move it away from the content */
+    margin-right: 20px;
+
+/* For visibility. Delete me */
+border: 1px solid brown;
+}
+
+#Photo
+{
+    /* Width and height of photo container */
+    width: 200px;
+    height: 200px;
+}
+
+#PhotoOptions
+{
+    text-align: center;
+    width: 200px;
+
+/* For visibility. Delete me */
+border: 1px solid brown;
+}
+
+#Info
+{
+    width: 400px;
+    text-align: center;
+
+    /* Move it to the right */
+    float: right;
+
+/* For visibility. Delete me */
+border: 1px solid blue;
+}
+
+#Info strong
+{
+    /* Give it a width */
+    display: inline-block;
+    width: 100px;
+
+/* For visibility. Delete me */
+border: 1px solid orange;
+}
+
+#Info span
+{
+    /* Give it a width */
+    display: inline-block;
+    width: 250px;
+
+/* For visibility. Delete me */
+border: 1px solid purple;
+}
+</style>
+<div id="ProfilePage">
+    <div id="LeftCol">
+        <div id="Photo">
+            <img src="{{ profile_pic.url }}" style="height:inherit; width: inherit">
+        </div>
+        <div id="ProfileOptions">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'LoginPage:upload' %}">
+            {% csrf_token %}
+            <p>Upload your profile photo</p><br>
+            <input id="id_image" type="file" class="" name="profile_pic" accept="image/*">
+            <input type="hidden" name="username" value="{{ username }}">
+            <input type="submit" value="Submit"/>
+        </form>
+        </div>
+    </div>
+    <form method="post" action="{% url 'LoginPage:usermainview' %}">
+        {% csrf_token %}
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="hidden" name="password" value="{{ password }}">
+        <input type="submit" value="My Uploads"/>
+    </form>
+    <form method="post" enctype="multipart/form-data" action="{% url 'LoginPage:uploadvideo' %}">
+        {% csrf_token %}
+        <p>Upload a video</p>
+        <input id="video" type="file" name="video" accept="video/*">
+        <input type="hidden" name="username" value="{{ username }}">
+        <input type="submit" value="Submit"/>
+    </form>
+    <div id="Info">
+        <p>
+            <strong>Welcome</strong>
+            <span>{{ name }}</span>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <span>Sirjon</span>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <span>Sirjon</span>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <span>Sirjon</span>
+        </p>
+        <p>
+            <strong>Name:</strong>
+            <span>Sirjon</span>
+        </p>
+    </div>
+    <form action="{% url 'LoginPage:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    <!-- Needed because other elements inside ProfilePage have floats -->
+    <div style="clear:both"></div>
+</div>
+</body>
+</html>
